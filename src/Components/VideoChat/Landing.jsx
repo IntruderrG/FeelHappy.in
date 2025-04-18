@@ -24,6 +24,7 @@ export const LandingVedio = () => {
       }
     } catch (error) {
       console.error("Error accessing media devices:", error);
+      alert("Could not access camera/microphone. Please check permissions.");
     }
   };
 
@@ -40,14 +41,13 @@ export const LandingVedio = () => {
       <div className="min-h-screen bg-gradient-to-br from-indigo-900 to-purple-800 text-white p-8">
         <div className="max-w-6xl mx-auto">
           <header className="mb-12">
-            <h1 className="text-4xl font-bold">Conversation Topics</h1>
+            <h1 className="text-4xl font-bold">Conversation Practice</h1>
             <p className="text-xl text-purple-200 mt-2">
               Enhance your fluency with real-time discussions!
             </p>
           </header>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left side - Video preview and join form */}
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-xl">
               <div className="mb-6 rounded-xl overflow-hidden bg-black aspect-video">
                 <video
@@ -55,7 +55,7 @@ export const LandingVedio = () => {
                   ref={videoRef}
                   muted
                   className="w-full h-full object-cover"
-                ></video>
+                />
               </div>
 
               <div className="space-y-4">
@@ -69,34 +69,33 @@ export const LandingVedio = () => {
                 <button
                   onClick={() => name.trim() && setJoined(true)}
                   disabled={!name.trim()}
-                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-all delay-100 ${
+                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-all ${
                     name.trim()
-                      ? "bg-purple-600 hover:bg-purple-700"
+                      ? "bg-purple-600 hover:bg-purple-700 hover:scale-105"
                       : "bg-gray-500 cursor-not-allowed"
-                  } cursor-pointer hover:scale-105 active:scale-95`}
+                  }`}
                 >
                   Join Conversation
                 </button>
               </div>
             </div>
 
-            {/* Right side - Features and user avatars */}
             <div className="space-y-8">
               <div className="flex space-x-6">
                 <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-xl">
                   <div className="flex flex-col items-center">
                     <div className="w-20 h-20 rounded-full bg-purple-400 flex items-center justify-center text-2xl font-bold mb-3">
-                      DU
+                      {name.charAt(0).toUpperCase() || "Y"}
                     </div>
-                    <span className="font-medium">DummyUser01</span>
+                    <span className="font-medium">{name || "You"}</span>
                   </div>
                 </div>
                 <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-xl">
                   <div className="flex flex-col items-center">
                     <div className="w-20 h-20 rounded-full bg-pink-400 flex items-center justify-center text-2xl font-bold mb-3">
-                      DU
+                      ?
                     </div>
-                    <span className="font-medium">DummyUser02</span>
+                    <span className="font-medium">Waiting...</span>
                   </div>
                 </div>
               </div>
@@ -108,23 +107,18 @@ export const LandingVedio = () => {
                 <ul className="space-y-3 text-purple-100">
                   <li className="flex items-start">
                     <span className="text-purple-400 mr-2">✓</span>
-                    Improve your speech and pronunciation
+                    Real-time conversation practice
                   </li>
                   <li className="flex items-start">
                     <span className="text-purple-400 mr-2">✓</span>
-                    Gain confidence in conversations
+                    Get instant feedback on your speaking
                   </li>
                   <li className="flex items-start">
                     <span className="text-purple-400 mr-2">✓</span>
-                    Track your progress effortlessly
+                    Connect with learners worldwide
                   </li>
                 </ul>
               </div>
-
-              <button className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-2xl p-4 shadow-xl transition-all flex items-center justify-between">
-                <span className="font-semibold">New Topic</span>
-                <span className="text-2xl">+</span>
-              </button>
             </div>
           </div>
         </div>
